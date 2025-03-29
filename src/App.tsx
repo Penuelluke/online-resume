@@ -20,17 +20,17 @@ function App() {
   const hobbiesAndSkills = [
     {
       title: "Piano",
-      image: "/Rock And Roll GIF by Rock & Roll Hall of Fame.gif", // Correct path with forward slashes
+      image: "/Rock And Roll GIF by Rock & Roll Hall of Fame.gif",
       description: "Playing Piano is always a passion of mine."
     },
     {
       title: "Coding",
-      image: "/Work Coding GIF by Scaler.gif", // Correct path with forward slashes
+      image: "/Work Coding GIF by Scaler.gif",
       description: "Developing web and mobile applications."
     },
     {
       title: "Gaming",
-      image: "/First Person Shooter Gun GIF by Apogee Entertainment.gif", // Correct path with forward slashes
+      image: "/First Person Shooter Gun GIF by Apogee Entertainment.gif",
       description: "Enjoying FPS and strategy games."
     }
   ];  
@@ -81,10 +81,10 @@ function App() {
   };
 
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);  // Default to the first image
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0); 
   
   const openModal = (index: number) => {
-    setSelectedImageIndex(index);  // Set the clicked image's index
+    setSelectedImageIndex(index);  
     setIsOpen(true);
   };
   
@@ -115,8 +115,6 @@ function App() {
     },
   ];
 
-
-  // Delay menu close until animation finishes
   const handleCloseMenu = () => {
     setTimeout(() => setMenuOpen(false), 10);
   };
@@ -163,7 +161,7 @@ function App() {
           <div className="flex gap-4">
             {[
               { href: "https://github.com/Penuelluke", icon: <Github />, color: "hover:bg-gray-900 dark:hover:bg-gray-700" },
-              { href: "https://linkedin.com/in/yourlinkedin", icon: <Linkedin />, color: "hover:bg-blue-600" },
+              { href: "https://www.linkedin.com/in/james-fanuel-n-damaso-0b71a1359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", icon: <Linkedin />, color: "hover:bg-blue-600" },
             ].map((social, index) => (
               <motion.a
                 key={index}
@@ -192,84 +190,130 @@ function App() {
 
         {/* Mobile Menu Button */}
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden p-2 rounded-md focus:outline-none hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+        onClick={() => setMenuOpen(!menuOpen)}
+        className="md:hidden p-2 rounded-lg focus:outline-none bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all shadow-sm"
+        aria-label="Toggle menu"
+      >
+        <motion.div
+          initial={false}
+          animate={menuOpen ? "open" : "closed"}
+          className="relative w-5 h-5 flex flex-col justify-center items-center"
         >
-          {menuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+          {/* Top Line */}
+          <motion.span
+            variants={{
+              closed: { rotate: 0, y: -6, width: "18px" },
+              open: { rotate: 45, y: 0, width: "18px" },
+            }}
+            className="absolute block h-0.5 bg-gray-800 dark:bg-white rounded-full"
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+          ></motion.span>
+          {/* Middle Line (Hidden when menu opens) */}
+          <motion.span
+            variants={{
+              closed: { opacity: 1, width: "18px" },
+              open: { opacity: 0 },
+            }}
+            className="absolute block h-0.5 bg-gray-800 dark:bg-white rounded-full"
+            transition={{ duration: 0.1, ease: "easeInOut" }}
+          ></motion.span>
+          {/* Bottom Line */}
+          <motion.span
+            variants={{
+              closed: { rotate: 0, y: 6, width: "18px" },
+              open: { rotate: -45, y: 0, width: "18px" },
+            }}
+            className="absolute block h-0.5 bg-gray-800 dark:bg-white rounded-full"
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+          ></motion.span>
+        </motion.div>
         </button>
       </div>
 
-      {/* Mobile Menu with AnimatePresence */}
+      {/* Mobile Menu with AnimatePresence */} 
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ x: "100%", opacity: 0 }} // Start off-screen
-            animate={{ x: 0, opacity: 1 }} // Slide in smoothly
-            exit={{ x: "100%", opacity: 0 }} // Slide out smoothly
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="md:hidden fixed top-0 right-0 w-screen h-screen bg-white dark:bg-gray-900 flex flex-col items-center justify-center gap-8 z-50 transition-colors"
+            initial={{ x: "100%", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: "100%", opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="md:hidden fixed top-[71px] right-0 w-full h-[calc(100vh-70px)] bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm flex flex-col justify-center z-40 shadow-xl"
           >
-            {/* Close Button */}
-            <button onClick={handleCloseMenu} className="absolute top-6 right-6 p-3">
-              <X className="w-8 h-8 text-gray-700 dark:text-gray-300" />
-            </button>
-
-          {/* Menu Items */}
-          <div className="flex flex-col items-center gap-6">
-            {[
-              { href: "#home", label: "Home" },
-              { href: "#about", label: "About Me" },
-              { href: "#projects", label: "View Work" },
-              { href: "#contact", label: "Contact Me" },
-              { 
-                href: "resume.pdf", 
-                label: "Download Resume", 
-                download: true, 
-                extraClasses: "relative inline-block text-transparent stroke-2 before:absolute before:inset-0 before:content-[attr(data-text)] before:text-gray-800 dark:before:text-purple-400" 
-              }, // Added extra styling for the text border effect
-            ].map((item, index) => (
-              <a
-                key={index}
-                href={item.href}
-                download={item.download}
-                data-text={item.label} // Used for text border effect
-                className={`text-2xl font-bold text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-purple-400 transition-all ${
-                  item.extraClasses || ""
-                }`}
-                onClick={handleCloseMenu} // Close menu on click
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-
+            {/* Menu Items */}
+            <nav className="flex flex-col items-center gap-8 px-6">
+              {[
+                { href: "#home", label: "Home" },
+                { href: "#about", label: "About Me" },
+                { href: "#projects", label: "View Work" },
+                { href: "#contact", label: "Contact Me" },
+                { 
+                  href: "/public/DAMASO - RESUME.pdf",
+                  label: "Download Resume", 
+                  download: true, 
+                  extraClasses: "text-blue-600 dark:text-purple-400 font-bold" 
+                },
+              ].map((item, index) => (
+                <motion.a
+                  key={index}
+                  href={item.href}
+                  download={item.download}
+                  className={`text-2xl font-medium text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-purple-400 transition-all ${
+                    item.extraClasses || ""
+                  }`}
+                  onClick={handleCloseMenu}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.1 * index, duration: 0.3 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+            </nav>
 
             {/* Social Links */}
-            <div className="flex gap-6 mt-4">
-              {[{ href: "https://github.com/Penuelluke", icon: <Github /> }, { href: "https://linkedin.com/in/yourlinkedin", icon: <Linkedin /> }].map(
-                (social, index) => (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-12 h-12 flex items-center justify-center rounded-full transition-all 
-                              duration-300 bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-900 dark:hover:bg-gray-700 
-                              hover:text-white shadow-md hover:shadow-lg"
-                  >
-                    {social.icon}
-                  </a>
-                )
-              )}
+            <div className="flex justify-center gap-6 mt-12">
+              {[
+                { href: "https://github.com/Penuelluke", icon: <Github />, label: "GitHub" }, 
+                { href: "https://www.linkedin.com/in/james-fanuel-n-damaso-0b71a1359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", icon: <Linkedin />, label: "LinkedIn" }
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="w-12 h-12 flex items-center justify-center rounded-full
+                          bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 
+                          hover:bg-blue-600 dark:hover:bg-purple-500 hover:text-white dark:hover:text-white
+                          shadow-md transition-all duration-300"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.3 + 0.1 * index, duration: 0.3 }}
+                  whileHover={{ y: -3, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
             </div>
 
             {/* Dark Mode Toggle */}
-            <button
+            <motion.button
               onClick={toggleDarkMode}
-              className="mt-6 p-4 rounded-full bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 transition"
+              className="mx-auto mt-10 p-4 rounded-full bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.3 }}
+              whileHover={{ rotate: 15 }}
             >
-              {darkMode ? <Sun className="w-8 h-8 text-yellow-500" /> : <Moon className="w-8 h-8 text-gray-600" />}
-            </button>
+              {darkMode ? 
+                <Sun className="w-6 h-6 text-yellow-500" /> : 
+                <Moon className="w-6 h-6 text-gray-700" />
+              }
+            </motion.button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -336,7 +380,7 @@ function App() {
                 <motion.a
                   whileHover={{ scale: 1.08, boxShadow: "0px 0px 15px rgba(255, 165, 0, 0.5)" }}
                   whileTap={{ scale: 0.95 }}
-                  href="resume.pdf"
+                  href="public/DAMASO - RESUME.pdf"
                   download
                   className="px-8 py-4 border-2 rounded-full text-lg sm:text-xl font-semibold 
                             border-orange-500 text-orange-500 
@@ -350,7 +394,7 @@ function App() {
               <div className="flex justify-center md:justify-start mt-10 gap-8 sm:gap-10">
                 {[
                   { href: "https://github.com/Penuelluke", icon: <Github />, color: "hover:bg-gray-900 dark:hover:bg-gray-700" },
-                  { href: "https://linkedin.com/in/yourlinkedin", icon: <Linkedin />, color: "hover:bg-blue-600" },
+                  { href: "https://www.linkedin.com/in/james-fanuel-n-damaso-0b71a1359?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", icon: <Linkedin />, color: "hover:bg-blue-600" },
                 ].map((social, index) => (
                   <motion.a
                     key={index}
@@ -600,7 +644,6 @@ function App() {
           </div>
         </div>
       </section>
-
 
       {/* Footer */}
       <footer className="py-8 px-6 text-center text-gray-600 dark:text-gray-300">
