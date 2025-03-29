@@ -20,17 +20,17 @@ function App() {
   const hobbiesAndSkills = [
     {
       title: "Piano",
-      image: "/img/Rock And Roll GIF by Rock & Roll Hall of Fame.gif", // Correct path with forward slashes
+      image: "/Rock And Roll GIF by Rock & Roll Hall of Fame.gif", // Correct path with forward slashes
       description: "Playing Piano is always a passion of mine."
     },
     {
       title: "Coding",
-      image: "/img/Work Coding GIF by Scaler.gif", // Correct path with forward slashes
+      image: "/Work Coding GIF by Scaler.gif", // Correct path with forward slashes
       description: "Developing web and mobile applications."
     },
     {
       title: "Gaming",
-      image: "/img/First Person Shooter Gun GIF by Apogee Entertainment.gif", // Correct path with forward slashes
+      image: "/First Person Shooter Gun GIF by Apogee Entertainment.gif", // Correct path with forward slashes
       description: "Enjoying FPS and strategy games."
     }
   ];  
@@ -105,11 +105,11 @@ function App() {
       title: "Student Management System",
       description: "A full-stack application for managing student records. I was assinged to the billing system of this project.",
       images: [
-        "img/project-1.png",
-        "img/project-1.1.png",
-        "img/project-1.2.png",
-        "img/project-1.3.png",
-        "img/project-1.4.png",
+        "/project-1.png",
+        "/project-1.1.png",
+        "/project-1.2.png",
+        "/project-1.3.png",
+        "/project-1.4.png",
       ],
       languages: ["JavaScript", "PHP", "MySQL"],
     },
@@ -130,7 +130,7 @@ function App() {
         {/* Logo */}
         <a href="#home" className="flex items-center cursor-pointer">
           <motion.img
-            src="img/IMG_2551.PNG"
+            src="/IMG_2551.PNG"
             alt="Logo"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -292,7 +292,7 @@ function App() {
               className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[38rem] md:h-[32rem] rounded-full md:rounded-[45%] overflow-hidden border-4 
                         border-purple-500 shadow-xl shadow-purple-300 dark:shadow-purple-700"
             >
-              <img src="img/profile_pic.jpg" alt="James Fanuel N. Damaso" className="w-full h-full object-cover" />
+              <img src="/profile_pic.jpg" alt="James Fanuel N. Damaso" className="w-full h-full object-cover" />
             </motion.div>
 
             {/* Text Content */}
