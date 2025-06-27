@@ -630,7 +630,7 @@ function App() {
                 
                 {/* Resume Download (Mobile) */}
                 <motion.a
-                  href="/DAMASO - RESUME.pdf"
+                  href="/JamesFanuelDamasoCV.pdf"
                   download
                   className="flex items-center gap-3 mt-2 w-full max-w-xs text-center justify-center px-4 py-3 bg-blue-500 dark:bg-purple-500 text-white rounded-lg font-medium shadow-md hover:shadow-lg transition-all"
                   onClick={() => setMenuOpen(false)}
@@ -777,7 +777,7 @@ function App() {
                 <motion.a
                   whileHover={{ scale: 1.05, boxShadow: "0px 0px 10px rgba(255, 165, 0, 0.5)" }}
                   whileTap={{ scale: 0.95 }}
-                  href="/DAMASO - RESUME.pdf"
+                  href="/JamesFanuelDamasoCV.pdf"
                   download
                   className="w-full sm:w-auto px-5 py-3 border-2 rounded-full text-sm sm:text-base font-semibold 
                             border-orange-500 text-orange-500 
